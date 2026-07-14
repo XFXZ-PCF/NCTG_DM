@@ -1,0 +1,172 @@
+
+Out[4]: 
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+UNet1D                                   [1, 1, 128]               --
+├─ModuleList: 1-7                        --                        (recursive)
+│    └─DoubleConv1D: 2-1                 [1, 64, 128]              --
+│    │    └─Sequential: 3-1              [1, 64, 128]              12,928
+├─MaxPool1d: 1-2                         [1, 64, 64]               --
+├─ModuleList: 1-7                        --                        (recursive)
+│    └─DoubleConv1D: 2-2                 [1, 128, 64]              --
+│    │    └─Sequential: 3-2              [1, 128, 64]              74,240
+├─MaxPool1d: 1-4                         [1, 128, 32]              --
+├─ModuleList: 1-7                        --                        (recursive)
+│    └─DoubleConv1D: 2-3                 [1, 256, 32]              --
+│    │    └─Sequential: 3-3              [1, 256, 32]              295,936
+├─MaxPool1d: 1-6                         [1, 256, 16]              --
+├─ModuleList: 1-7                        --                        (recursive)
+│    └─DoubleConv1D: 2-4                 [1, 512, 16]              --
+│    │    └─Sequential: 3-4              [1, 512, 16]              1,181,696
+├─MaxPool1d: 1-8                         [1, 512, 8]               --
+├─DoubleConv1D: 1-9                      [1, 1024, 8]              --
+│    └─Sequential: 2-5                   [1, 1024, 8]              --
+│    │    └─Conv1d: 3-5                  [1, 1024, 8]              1,572,864
+│    │    └─BatchNorm1d: 3-6             [1, 1024, 8]              2,048
+│    │    └─ReLU: 3-7                    [1, 1024, 8]              --
+│    │    └─Conv1d: 3-8                  [1, 1024, 8]              3,145,728
+│    │    └─BatchNorm1d: 3-9             [1, 1024, 8]              2,048
+│    │    └─ReLU: 3-10                   [1, 1024, 8]              --
+├─ModuleList: 1-10                       --                        --
+│    └─ConvTranspose1d: 2-6              [1, 512, 16]              1,049,088
+│    └─DoubleConv1D: 2-7                 [1, 512, 16]              --
+│    │    └─Sequential: 3-11             [1, 512, 16]              2,361,344
+│    └─ConvTranspose1d: 2-8              [1, 256, 32]              262,400
+│    └─DoubleConv1D: 2-9                 [1, 256, 32]              --
+│    │    └─Sequential: 3-12             [1, 256, 32]              590,848
+│    └─ConvTranspose1d: 2-10             [1, 128, 64]              65,664
+│    └─DoubleConv1D: 2-11                [1, 128, 64]              --
+│    │    └─Sequential: 3-13             [1, 128, 64]              147,968
+│    └─ConvTranspose1d: 2-12             [1, 64, 128]              16,448
+│    └─DoubleConv1D: 2-13                [1, 64, 128]              --
+│    │    └─Sequential: 3-14             [1, 64, 128]              37,120
+├─Conv1d: 1-11                           [1, 1, 128]               65
+==========================================================================================
+Total params: 10,818,433
+Trainable params: 10,818,433
+Non-trainable params: 0
+Total mult-adds (M): 174.69
+==========================================================================================
+Input size (MB): 0.00
+Forward/backward pass size (MB): 2.62
+Params size (MB): 43.27
+Estimated Total Size (MB): 45.90
+==========================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UNet1D(
+  (ups): ModuleList(
+    (0): ConvTranspose1d(1024, 512, kernel_size=(2,), stride=(2,))
+    (1): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(1024, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(512, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+    (2): ConvTranspose1d(512, 256, kernel_size=(2,), stride=(2,))
+    (3): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(512, 256, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(256, 256, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+    (4): ConvTranspose1d(256, 128, kernel_size=(2,), stride=(2,))
+    (5): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(256, 128, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(128, 128, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+    (6): ConvTranspose1d(128, 64, kernel_size=(2,), stride=(2,))
+    (7): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(128, 64, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(64, 64, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+  (downs): ModuleList(
+    (0): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(2, 64, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(64, 64, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+    (1): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(64, 128, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(128, 128, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+    (2): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(128, 256, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(256, 256, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+    (3): DoubleConv1D(
+      (double_conv): Sequential(
+        (0): Conv1d(256, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+        (3): Conv1d(512, 512, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+        (4): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU(inplace=True)
+      )
+    )
+  )
+  (pool): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+  (bottleneck): DoubleConv1D(
+    (double_conv): Sequential(
+      (0): Conv1d(512, 1024, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+      (1): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Conv1d(1024, 1024, kernel_size=(3,), stride=(1,), padding=(1,), bias=False)
+      (4): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (5): ReLU(inplace=True)
+    )
+  )
+  (final_conv): Conv1d(64, 1, kernel_size=(1,), stride=(1,))
+)
